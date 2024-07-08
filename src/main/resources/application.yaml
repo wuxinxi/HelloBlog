@@ -1,0 +1,29 @@
+server:
+  port: 8090
+  compression:
+    enabled: true
+
+spring:
+  datasource:
+    #配置数据源类型
+    type: com.zaxxer.hikari.HikariDataSource
+    #配置连接数据库的信息
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/big_event?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root123456
+  mvc:
+    throw-exception-if-no-handler-found: true # not found时抛出异常
+  web:
+    resources:
+      add-mappings: false # 关闭默认的静态资源映射
+
+mybatis-plus:
+  configuration:
+    #配置日志
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+token:
+  expireTime: 600000 #10 分钟
+  secret: xxstudy.cn
