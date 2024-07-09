@@ -25,5 +25,5 @@ mybatis-plus:
     map-underscore-to-camel-case: true
 
 token:
-  expireTime: 600000 #10 分钟
+  expireTime: 600000000 #10 分钟
   secret: xxstudy.cn

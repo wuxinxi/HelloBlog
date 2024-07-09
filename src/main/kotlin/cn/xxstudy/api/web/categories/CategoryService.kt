@@ -27,7 +27,9 @@ class CategoryService(val mapper: CategoryMapper) : ServiceImpl<CategoryMapper, 
     }
 
     override fun update(category: Category) {
-        val queryWrapper = QueryWrapper<Category>().eq("create_user", UserCacheManager.getUserId())
+        val queryWrapper = QueryWrapper<Category>()
+            .eq("create_user", UserCacheManager.getUserId())
+            .eq("id", category.id)
         if (!update(category, queryWrapper)) {
             throw ApiRuntimeException(ResCode.FAILED_DEFAULT)
         }
@@ -38,5 +40,7 @@ class CategoryService(val mapper: CategoryMapper) : ServiceImpl<CategoryMapper, 
         val queryWrapper = QueryWrapper<Category>().eq("create_user", UserCacheManager.getUserId())
         return list(queryWrapper)
     }
+
+    override fun delete(id: Int) = removeById(id)
 
 }

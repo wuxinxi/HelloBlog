@@ -14,4 +14,6 @@ interface ICategoryService : IService<Category> {
     fun update(category: Category)
 
     fun getList(): List<Category>
+
+    fun delete(id: Int): Boolean
 }
