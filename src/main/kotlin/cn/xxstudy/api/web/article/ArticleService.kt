@@ -38,5 +38,5 @@ class ArticleService(val mapper: ArticleMapper) : ServiceImpl<ArticleMapper, Art
         return pages.records
     }
 
-    override fun delete(id: Int) = removeById(id)
+    override fun delete(id: Long) = removeById(id)
 }

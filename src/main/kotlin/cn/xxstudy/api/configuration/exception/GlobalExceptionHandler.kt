@@ -39,6 +39,17 @@ class GlobalExceptionHandler {
     }
 
     /**
+     * 自定义运行时异常处理
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(AppRuntimeException::class)
+    fun appRuntimeExceptionHandler(e: AppRuntimeException): ResBody<String?> {
+        return ResBody.failed(e.code, e.message)
+    }
+
+    /**
      * 空指针异常定义为前端传参错误，返回400
      *
      * @param e NullPointerException

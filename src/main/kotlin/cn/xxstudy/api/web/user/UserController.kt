@@ -2,14 +2,15 @@ package cn.xxstudy.api.web.user
 
 import cn.xxstudy.api.pojo.User
 import cn.xxstudy.api.utils.TokenUtil
+import cn.xxstudy.api.vo.AvatarVo
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import org.springframework.web.multipart.MultipartFile
+import javax.servlet.http.HttpServletRequest
 import javax.validation.Valid
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotEmpty
+import javax.validation.constraints.NotNull
 
 /**
  * @date: 2024/7/7 11:57
@@ -22,6 +23,7 @@ class UserController {
 
     @Autowired
     lateinit var userService: UserService
+
     @Autowired
     lateinit var tokenUtil: TokenUtil
 
@@ -42,5 +44,14 @@ class UserController {
         val user = userService.login(email, password)
         return tokenUtil.generateToken(user.id, user.email)
     }
+
+    @GetMapping("/profile")
+    fun profile(): User? = userService.profile()
+
+    @PatchMapping("/avatar")
+    fun uploadAvatar(
+        @RequestParam(name = "icon") @Valid @NotNull(message = "缺少图片资源") avatarIcon: MultipartFile
+    ): AvatarVo =
+        userService.uploadAvatar(avatarIcon)
 
 }

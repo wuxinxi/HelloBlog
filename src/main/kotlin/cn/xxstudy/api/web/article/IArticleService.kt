@@ -16,6 +16,6 @@ interface IArticleService : IService<Article> {
 
     fun getList(page: Int, limit: Int = 20): List<Article>
 
-    fun delete(id: Int): Boolean
+    fun delete(id: Long): Boolean
 
 }

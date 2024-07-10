@@ -24,7 +24,7 @@ public class User {
     @Email(message = "邮箱格式错误")
     @NotBlank(message = "缺少邮箱")
     public String email;
-    private String userPic;
+    public String userPic;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 }

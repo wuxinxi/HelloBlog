@@ -12,8 +12,14 @@ import javax.validation.ConstraintValidatorContext
  * 2: deleted
  *
  */
-class StatusConstraint : ConstraintValidator<Status, Int> {
+class StatusConstraint : ConstraintValidator<Status, Int?> {
 
-    override fun isValid(status: Int, constraint: ConstraintValidatorContext) = status in intArrayOf(0, 1, 2)
+    private lateinit var statusList: IntArray
+
+    override fun initialize(constraintAnnotation: Status) {
+        statusList = constraintAnnotation.status
+    }
+
+    override fun isValid(status: Int?, constraint: ConstraintValidatorContext) = (status ?: -1) in statusList
 
 }

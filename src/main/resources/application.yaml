@@ -14,9 +14,15 @@ spring:
     password: root123456
   mvc:
     throw-exception-if-no-handler-found: true # not found时抛出异常
-  web:
-    resources:
-      add-mappings: false # 关闭默认的静态资源映射
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2MB
+      max-request-size: 2MB
 
 mybatis-plus:
   configuration:
